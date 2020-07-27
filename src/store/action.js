@@ -3,10 +3,9 @@ import axios from 'axios';
 export const INIT_POKEMON = 'INIT_POKEMON';
 export const ADD_MORE = 'ADD_MORE';
 
-export const addPokemon = (payload) => {
+export const addPokemon = () => {
     return {
         type: ADD_MORE,
-        payload
     }
 }
 

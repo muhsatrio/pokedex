@@ -17,8 +17,6 @@ function App(props) {
     props.onInitPokemon(props.totalPokemon);
   }, [props]);
 
-  console.log(props.totalPokemon);
-
   return (
     <div className="App">
       <Router>

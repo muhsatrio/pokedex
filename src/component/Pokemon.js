@@ -19,7 +19,7 @@ const Pokemon = ({pokemon}) => {
         </div>
         <center><b>{pokemon.name}</b></center>
         <div style={{textAlign: 'center'}}>
-            <Button style={{margin: '15px'}} variant="primary" as={Link} to={{pathname: `/pokemon/${pokemon.id}`}}>Detail</Button>
+            <Button style={{margin: '15px'}} variant="success" as={Link} to={{pathname: `/pokemon/${pokemon.id}`}}>Detail</Button>
         </div>
     </div>
 )}
