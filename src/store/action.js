@@ -1,11 +1,19 @@
 import axios from 'axios';
 
 export const INIT_POKEMON = 'INIT_POKEMON';
+export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 export const ADD_MORE = 'ADD_MORE';
+export const API_URL = 'https://pokeapi.co';
 
 export const addPokemon = () => {
     return {
         type: ADD_MORE,
+    }
+}
+
+export const toggleLoading = () => {
+    return {
+        type: TOGGLE_LOADING,
     }
 }
 
@@ -18,11 +26,11 @@ export const initPokemon = (pokemons) => {
 
 export const fetchPokemon = (totalPokemon) => {
     return async dispatch => {
-        let temp = [];
-        for (let i=1;i<=totalPokemon;i++) {
-          const result = await axios(`https://pokeapi.co/api/v2/pokemon/${i}`);
-          temp = [...temp, {
-            id: i,
+        let resultFetch = [];
+        for (let idPokemon=1;idPokemon<=totalPokemon;idPokemon++) {
+          const result = await axios(`${API_URL}/api/v2/pokemon/${idPokemon}`);
+          resultFetch = [...resultFetch, {
+            id: idPokemon,
             name: result.data.name,
             img: result.data.sprites.front_default,
             move: result.data.moves,
@@ -30,6 +38,6 @@ export const fetchPokemon = (totalPokemon) => {
             owned: 0
           }];
         }
-        dispatch(initPokemon(temp));
+        dispatch(initPokemon(resultFetch));
     }
 }
