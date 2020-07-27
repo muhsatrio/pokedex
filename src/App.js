@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -7,9 +7,18 @@ import {
 import './App.css';
 import NavbarPage from './container/NavbarPage';
 import PokemonList from './container/PokemonList';
-import NotFound from './container/NotFound'
+import NotFound from './container/NotFound';
+import {connect} from 'react-redux';
+import {fetchPokemon} from './store/action';
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.onInitPokemon(props.totalPokemon);
+  }, [props]);
+
+  console.log(props.totalPokemon);
+
   return (
     <div className="App">
       <Router>
@@ -23,4 +32,16 @@ function App() {
   );
 }
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    onInitPokemon: (totalPokemon) => dispatch(fetchPokemon(totalPokemon))
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    totalPokemon: state.totalPokemon
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
