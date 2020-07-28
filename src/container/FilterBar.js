@@ -11,7 +11,7 @@ const FilterBar = (props) => {
 
     return (
         <div className="FilterBar">
-            <p>Search by Type</p>
+            <p>Filter by Type</p>
             <Row>
                 {props.types ? (
                     props.types.map((eachType, i) => (
