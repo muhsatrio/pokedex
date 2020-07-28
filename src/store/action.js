@@ -2,9 +2,11 @@ import axios from 'axios';
 import {capitalizeLetter} from '../util/util'
 
 export const INIT_POKEMON = 'INIT_POKEMON';
+export const INIT_TYPES = 'INIT_TYPES';
 export const INIT_ONE_POKEMON = 'INIT_ONE_POKEMON';
 export const TOGGLE_LOADING = 'TOGGLE_LOADING';
 export const ADD_MORE = 'ADD_MORE';
+export const FILTER = 'FILTER';
 export const API_URL = 'https://pokeapi.co';
 
 export const addPokemon = () => {
@@ -30,6 +32,20 @@ export const initOnePokemon = (pokemon) => {
     return {
         type: INIT_ONE_POKEMON,
         pokemon
+    }
+}
+
+export const filterPokemon = (tag) => {
+    return {
+        type: FILTER,
+        tag
+    }
+}
+
+export const initTypes = (types) => {
+    return {
+        type: INIT_TYPES,
+        types
     }
 }
 
@@ -64,5 +80,16 @@ export const fetchOnePokemon = (idPokemon) => {
             abilities: result.data.abilities.map(eachType => capitalizeLetter(eachType.ability.name)),
             moves: result.data.moves.map(eachType => capitalizeLetter(eachType.move.name)),
         }));
+    }
+}
+
+export const fetchTypes = () => {
+    return async dispatch => {
+        const result = await axios(`${API_URL}/api/v2/type`);
+        let typeResult = [];
+        result.data.results.forEach(eachResult => {
+            typeResult = [...typeResult, eachResult.name];
+        });
+        dispatch(initTypes(typeResult));
     }
 }
