@@ -14,7 +14,6 @@ const initialState = {
     totalPokemon: 20,
     loading: false,
     types: null,
-    filtered: false
 }
 
 const reducer = (state=initialState, action) => {
@@ -40,12 +39,17 @@ const reducer = (state=initialState, action) => {
                 onePokemon: action.pokemon
             }
         case FILTER:
-            const newFilteredPokemon = state.pokemons.filter(eachPokemon => {
-                return eachPokemon.type.includes(capitalizeLetter(action.tag));
-            });
+            let newFilteredPokemon = null;
+            if (action.tag==='all') {
+                newFilteredPokemon = state.pokemons;
+            }
+            else {
+                newFilteredPokemon = state.pokemons.filter(eachPokemon => {
+                    return eachPokemon.type.includes(capitalizeLetter(action.tag));
+                });
+            }
             return {
                 ...state,
-                filtered: true,
                 filteredPokemons: newFilteredPokemon
             }
             
@@ -53,7 +57,7 @@ const reducer = (state=initialState, action) => {
             state.loading = false;
             return {
                 ...state,
-                types: action.types
+                types: [...action.types, 'all']
             }
         case TOGGLE_LOADING:
             return {

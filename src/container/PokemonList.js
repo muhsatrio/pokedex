@@ -14,10 +14,14 @@ const PokemonList = (props) => {
             <div className="Home">
                 <Container>
                     <FilterBar />
-                    <div className="PokemonList" style={{display: 'flex', flexWrap: 'wrap'}}>
-                        {props.listPokemons.map((item, key) => <Pokemon pokemon={item} key={key} /> )}
-                    </div>
-                    <Button style={{margin: "10px"}} variant="primary" onClick={props.addMore}>Add More</Button>{props.loading ? (<Spinner small={true} />) : null}
+                    {props.listPokemons.length>0 ? (
+                        <div className="PokemonList" style={{display: 'flex', flexWrap: 'wrap'}}>
+                            {props.listPokemons.map((item, key) => <Pokemon pokemon={item} key={key} /> )}
+                        </div>
+                    ) : (
+                        <h1>Nothing found Pokemon :(</h1>
+                    )}
+                    <Button style={{margin: "10px"}} variant="primary" onClick={() => props.addMore()}>Add More</Button>{props.loading ? (<Spinner small={true} />) : null}
                 </Container>
             </div>
         );

@@ -16,7 +16,7 @@ const FilterBar = (props) => {
                 {props.types ? (
                     props.types.map((eachType, i) => (
                         <span key={i} style={{margin: '5px'}}>
-                            <Button variant="primary">{eachType}</Button>{' '}
+                            <Button onClick={() => props.filterFunc(eachType)} variant="primary">{eachType}</Button>{' '}
                         </span>
                     ))
                 ) : null}
@@ -29,7 +29,7 @@ const FilterBar = (props) => {
 const mapDispatchToProps = dispatch => {
     return {
         onInitTypes: () => dispatch(fetchTypes()),
-        // filterFunc: (tag) => dispatch(filterPokemon(tag)) 
+        filterFunc: (tag) => dispatch(filterPokemon(tag)) 
     }
 }
 
