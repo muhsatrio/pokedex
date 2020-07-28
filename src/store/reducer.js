@@ -40,7 +40,7 @@ const reducer = (state=initialState, action) => {
             }
         case FILTER:
             let newFilteredPokemon = null;
-            if (action.tag==='all') {
+            if (action.tag==='all pokemon') {
                 newFilteredPokemon = state.pokemons;
             }
             else {
@@ -57,7 +57,7 @@ const reducer = (state=initialState, action) => {
             state.loading = false;
             return {
                 ...state,
-                types: [...action.types, 'all']
+                types: [...action.types, 'all pokemon']
             }
         case TOGGLE_LOADING:
             return {
