@@ -7,6 +7,7 @@ import {
 import './App.css';
 import NavbarPage from './container/NavbarPage';
 import PokemonList from './container/PokemonList';
+import PokemonDetail from './container/PokemonDetail';
 import NotFound from './container/NotFound';
 import {connect} from 'react-redux';
 import {fetchPokemon} from './store/action';
@@ -23,6 +24,7 @@ function App(props) {
         <NavbarPage />
         <Switch>
           <Route exact path="/" component={PokemonList} />
+          <Route path={"/pokemon/:idPokemon"} component={PokemonDetail} />
           <Route component={NotFound} />
         </Switch>
       </Router>
