@@ -11,7 +11,7 @@ const PokemonDetail = (props) => {
 
     useEffect(() => {
         props.fetchOnePokemon(idPokemon);
-    }, [props]);
+    }, [props, idPokemon]);
 
     const divStyle = {
         padding: '10px',
