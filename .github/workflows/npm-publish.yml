@@ -28,3 +28,4 @@ jobs:
     - run: npm i
     - run: npm test
     - run: npm run build
+    - run: sudo cp -r /home/ubuntu/pokedex/_work/pokedex/pokedex/build /var/www/pokedex.msatrio.com/html
